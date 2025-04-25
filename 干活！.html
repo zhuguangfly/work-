@@ -1,0 +1,129 @@
+ <!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>曾吉超干活网</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('image/御坂御坂.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* 标题 */
+        h1 {
+            color: darkred;
+            margin-top: 30px; /* 标题和上边界的距离 */
+            font-size: 48px;
+        }
+
+        /* 按钮样式 */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        button {
+            font-size: 24px;
+            padding: 20px 40px;
+            background-color: #ff4500;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #ff6347;
+        }
+
+        /* 播放音乐按钮 */
+        #play-music-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #000;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 30px;
+            text-align: center;
+        }
+
+        /* 音乐播放指示 */
+        #background-music {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 标题 -->
+    <h1>曾吉超，快点干活！！！</h1>
+
+    <!-- 按钮区域 -->
+    <div class="button-container">
+        <button id="start-btn">干！活！</button>
+        <button id="stop-btn">停止干！活！</button>
+    </div>
+
+    <!-- 手动播放音乐按钮 -->
+    <button id="play-music-btn">&#9654;</button>
+
+    <!-- 音乐播放元素 -->
+    <audio id="background-music" autoplay loop>
+        <source src="music/love-loop.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        let isWorking = false;
+
+        // 处理干活按钮点击
+        const startBtn = document.getElementById('start-btn');
+        const stopBtn = document.getElementById('stop-btn');
+        const backgroundMusic = document.getElementById('background-music');
+        const playMusicBtn = document.getElementById('play-music-btn');
+
+        startBtn.addEventListener('click', () => {
+            if (!isWorking) {
+                isWorking = true;
+                startBtn.textContent = '继续干！活！';
+                // 可以加上粒子效果代码...
+            }
+        });
+
+        stopBtn.addEventListener('click', () => {
+            window.location.reload(); // 结束页面
+        });
+
+        // 播放音乐
+        playMusicBtn.addEventListener('click', () => {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play();
+                playMusicBtn.textContent = '❚❚'; // 显示暂停按钮
+            } else {
+                backgroundMusic.pause();
+                playMusicBtn.textContent = '►'; // 显示播放按钮
+            }
+        });
+    </script>
+</body>
+</html>
